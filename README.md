@@ -3,7 +3,7 @@
 
 Submitted by: **Christy Xiong**
 
-Time spent: **10** hours spent in total
+Time spent: **15** hours spent in total
 ## Flix Part 2
 
 ### User Stories
