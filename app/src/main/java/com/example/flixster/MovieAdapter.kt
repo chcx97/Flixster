@@ -1,14 +1,16 @@
 package com.example.flixster
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-
+const val MOVIE_EXTRA = "MOVIE_EXTRA"
 class MovieAdapter(private val context: Context, private val movies: List<Movie>)
     : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
@@ -25,16 +27,37 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
 
     override fun getItemCount() = movies.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
         private val ivPoster = itemView.findViewById<ImageView>(R.id.ivPoster)
         private val tvTitle = itemView.findViewById<TextView>(R.id.tvTitle)
         private val tvOverview = itemView.findViewById<TextView>(R.id.tvOverview)
+
+        init {
+            itemView.setOnClickListener(this) //this is referring to the ViewHolder class which implements View.OnCLickListener
+        }
 
         fun bind(movie: Movie){
             tvTitle.text = movie.title
             tvOverview.text = movie.overview
             //Glide.with(context).load(movie.posterImageUrl).into(ivPoster)
             Glide.with(context).load(movie.posterImageUrl).into(ivPoster)
+        }
+
+        override fun onClick(p0: View?) {
+            // 1. Get notified of the movie that was clicked
+            val movie = movies[adapterPosition]
+            //toast shows us the title of the movie at the bottom which means that OnClickListener is working
+            //Toast.makeText(context, movie.title, Toast.LENGTH_SHORT).show()
+
+            // 2. Use intent system to navigate the new activity
+            val intent = Intent(context, DetailActivity::class.java)
+
+            //intent.putExtra would work, but it would not be smart to pass each categories of the movie.
+            //intent.putExtra("move_title", movie.title)
+
+            //what we want instead is....
+            intent.putExtra(MOVIE_EXTRA, movie)
+            context.startActivity(intent)
         }
     }
 }
