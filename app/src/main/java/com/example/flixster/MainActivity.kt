@@ -1,8 +1,10 @@
 package com.example.flixster
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
@@ -18,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     private val movies = mutableListOf<Movie>()
     private lateinit var rvMovies: RecyclerView
 
-
     //1. Define a data model class as the data source - DONE (our movie data class)
     //2. Add the RecyclerView to the layout - DONE
     //3. Create a custom row layout XML file to visualize the item - DONE
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         rvMovies = findViewById(R.id.rvMovies)
+
 
         val movieAdapter = MovieAdapter(this, movies)  //'this' refers to the main activity
         rvMovies.adapter = movieAdapter

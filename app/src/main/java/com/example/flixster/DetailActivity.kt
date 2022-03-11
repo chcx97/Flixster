@@ -1,5 +1,6 @@
 package com.example.flixster
 
+import android.content.Intent
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.app.ActivityOptionsCompat
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import com.google.android.youtube.player.YouTubeBaseActivity
@@ -87,4 +89,7 @@ class DetailActivity : YouTubeBaseActivity() {
 
         })
     }
+
+
+
 }
